@@ -1,3 +1,9 @@
 #!/bin/bash
 
-cat "$1" | rekotoppm | convert ppm:- "$2"
+if [ "$#" -ne 2 ] || [ "$1" == "--help" ] || [ "$1" == "-h" ] || [ "$1" == "--version" ]; then
+	echo "reko2png v1.1.0"
+	echo "Usage: reko2png <in> <out.png>"
+	exit
+fi
+
+rekotoppm < "$1" | convert ppm:- "$2"
